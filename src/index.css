@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Сглаживание шрифтов для лучшей читаемости */
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-navy-900 font-sans;
+  }
+
+  /* Фокус-стили для accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-gold;
+  }
+
+  /* Скрываем скроллбар, но сохраняем функциональность */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Кастомный скролл */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-navy-100;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gold rounded-full;
+  }
+}
