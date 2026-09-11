@@ -4,39 +4,39 @@
  */
 
 export interface Service {
-  id: string
-  title: string
-  description: string
-  icon: React.ReactNode
-  price?: string
+  id: string;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  price?: string;
 }
 
 export interface Advantage {
-  id: string
-  title: string
-  description: string
-  icon: React.ReactNode
+  id: string;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
 }
 
 export interface Testimonial {
-  id: string
-  name: string
-  role: string
-  content: string
-  rating: number
-  date: string
+  id: string;
+  name: string;
+  role: string;
+  content: string;
+  rating: number;
+  date: string;
 }
 
 export interface ContactFormData {
-  name: string
-  phone: string
-  email: string
-  message: string
-  consent: boolean
+  name: string;
+  phone: string;
+  email: string;
+  message: string;
+  consent: boolean;
 }
 
 export interface StatItem {
-  label: string
-  value: string
-  suffix?: string
+  label: string;
+  value: string;
+  suffix?: string;
 }

@@ -1,23 +1,27 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-
-// https://vitejs.dev/config/
-export default defineConfig({
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import config from "./site.config.json" with { type: "json" };
+export default defineConfig(({ command }) => ({
+  root: "site",
+  publicDir: "../public",
   plugins: [react()],
-  // ВАЖНО: Указываем имя репозитория со слэшами по краям
-  base: '/sal/', 
+  base: command === "serve" ? "/" : new URL(config.siteUrl).pathname,
   server: {
-    port: 3000,
-    open: true,
+    host: "0.0.0.0",
+    port: 4173,
+    strictPort: true,
+    allowedHosts: ["terminal.local"],
+  },
+  preview: {
+    host: "0.0.0.0",
+    port: 4173,
+    strictPort: true,
+    allowedHosts: ["terminal.local"],
   },
   build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'framer-motion': ['framer-motion'],
-          'react-hook-form': ['react-hook-form'],
-        },
-      },
-    },
+    outDir: "../dist",
+    emptyOutDir: true,
+    assetsInlineLimit: 0,
+    target: "es2020",
   },
-})
+}));

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://alexasryan.github.io/sal/sitemap.xml

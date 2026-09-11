@@ -1,0 +1,23 @@
+{
+  "brand": "SĀL",
+  "descriptor": "LEGAL ADVISORY",
+  "siteUrl": "https://alexasryan.github.io/sal/",
+  "demo": true,
+  "company": {
+    "verified": false,
+    "name": "SĀL Legal — демонстрационная концепция",
+    "email": "contact@example.com",
+    "phone": "+00 (000) 000-00-00",
+    "address": "[Город, улица, номер офиса]",
+    "hours": "[Пн–Пт, 09:00–18:00; часовой пояс]",
+    "registration": "[Наименование, регистрационный номер, юрисдикция]",
+    "socials": []
+  },
+  "form": { "endpoint": "" },
+  "consultation": {
+    "minutes": 45,
+    "price": 180,
+    "currency": "EUR",
+    "paymentUrl": ""
+  }
+}
