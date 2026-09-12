@@ -174,7 +174,13 @@ for (const layout of layouts) {
     }));
     expect(motion).toEqual({ scroll: "auto", animation: "none" });
     await page.evaluate(() => scrollTo(0, 0));
-    await page.screenshot({ path: "qa-report/" + name + ".png", fullPage: true });
+    await page.screenshot({ path: "qa-report/" + name + ".png", fullPage: true, scale: "css" });
+    if (["desktop-1440", "android-390"].includes(name)) {
+      const preview = (await page.screenshot({ type: "jpeg", quality: 65, scale: "css" })).toString("base64");
+      for (let offset = 0; offset < preview.length; offset += 16000) {
+        console.log("QA_PREVIEW:" + name + ":" + preview.slice(offset, offset + 16000));
+      }
+    }
     await check(name + " WCAG A/AA automatic audit", () => accessibility(page));
   });
   if (interact) {

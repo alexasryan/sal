@@ -52,7 +52,7 @@ git commit -m "Update legal website"
 git push origin main
 ```
 
-`pages:sync` переносит `dist` в корень, учитывая свой `.pages-output.json`, и не удаляет исходники. GitHub выполняет собственный Pages deployment после push. Workflow `.github/workflows/deploy.yml` дополнительно устанавливает зависимости из lockfile, строит сайт, запускает тесты и публикует artifact `dist` через Pages Actions. Режим публикации GitHub Actions также поддержан. Оба канала получают одинаковые статические файлы.
+`pages:sync` переносит `dist` в корень, учитывая свой `.pages-output.json`, и не удаляет исходники. GitHub выполняет собственный Pages deployment после push. Workflow `.github/workflows/deploy.yml` дополнительно устанавливает зависимости из lockfile, строит сайт, запускает тесты и публикует artifact `dist` через Pages Actions. Режим публикации GitHub Actions также поддержан. Build автоматически синхронизирует и коммитит только сгенерированные файлы из manifest. Обычный push без force останавливается при конкурирующих изменениях в main. Оба канала получают одинаковые статические файлы.
 
 `siteUrl` — единственный источник base path и canonical. Для нового репозитория/домена измените его и пересоберите (HTTPS, завершающий `/`). Для корневого домена pathname — `/`. DNS/CNAME и настройка домена выполняются отдельно.
 

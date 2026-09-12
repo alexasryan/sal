@@ -11,6 +11,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -23,6 +25,10 @@ jobs:
         run: npm run build
       - name: Validate forms, routes and assets
         run: npm test
+      - name: Synchronize generated Pages snapshot
+        run: npm run pages:sync
+      - name: Commit generated files without overwriting concurrent work
+        run: node scripts/commit-pages-snapshot.mjs
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload static site
