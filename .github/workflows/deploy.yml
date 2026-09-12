@@ -46,7 +46,7 @@ jobs:
   verify:
     needs: deploy
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -54,3 +54,15 @@ jobs:
           node-version: "24"
       - name: Verify public pages and assets
         run: node scripts/verify-deployment.mjs
+      - name: Install isolated browser test tools
+        run: npm install --no-save --package-lock=false @playwright/test@1.58.2 @axe-core/playwright@4.13.0
+      - name: Install Chromium and WebKit
+        run: npx playwright install --with-deps chromium webkit
+      - name: Test published site in desktop and mobile browsers
+        run: node scripts/browser-qa.mjs
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: browser-qa
+          path: qa-report/
+          retention-days: 14

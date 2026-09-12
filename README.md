@@ -73,7 +73,9 @@ git push origin main
 
 12 автоматических проверок покрывают поля и согласие, выбор контакта, безопасные URL, JSON POST без cookies, успех/отказ/429/сетевую ошибку/отмену, prerender и семантику, якоря, static routes и assets с base path, metadata, бюджет JS/изображений, отсутствие tracking/secrets. Ответы сервера формы имитируются: реальные сообщения не отправляются.
 
-Вручную проверяются mobile menu, focus/Escape, FAQ, процесс с Arrow/Home/End, выбор практики из CTA, состояния формы, правовые URL, refresh, console и overflow. Lighthouse-баллы не выдумываются.
+После deployment workflow выполняет HTTP-проверку публичных маршрутов и ресурсов, затем браузерную проверку через Playwright + axe: Chromium на пяти ширинах 320–1920 px и WebKit/iPhone. Проверяются mobile menu, focus/Escape, FAQ, процесс с Arrow/Home/End, выбор практики из CTA, состояния demo-формы, правовые URL, refresh, console, overflow и reduced motion. Результаты и снимки экранов доступны в artifact `browser-qa` последнего workflow. Инструменты тестирования устанавливаются только в задаче verify и не включаются в клиентский bundle.
+
+Для повторения: `npm install --no-save --package-lock=false @playwright/test@1.58.2 @axe-core/playwright@4.13.0`, `npx playwright install --with-deps chromium webkit`, `node scripts/browser-qa.mjs`. Проверяется URL из `site.config.json`. Реальные отправки и checkout этот скрипт не активирует. Ручная оценка дизайна, screen reader и физические устройства остаются отдельными проверками. Lighthouse-баллы не выдумываются.
 
 В frontend допустимы только публичные endpoint и Payment Link. `VITE_*` не являются хранилищем секретов. Приватные ключи не нужны и не должны попадать в репозиторий, config или artifacts. `.env*` игнорируются (кроме безопасного `.env.example`). Серверная валидация, CORS, rate limits, spam filtering, дедупликация и политика хранения настраиваются у обработчика. Подтверждение платежа — в кабинете провайдера или через проверенный webhook, не по URL возврата.
 
